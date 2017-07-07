@@ -3,8 +3,7 @@ package com.balamurugan.cocubesmessagenotification;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
@@ -12,9 +11,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-public class WebViewActivity extends ActionBarActivity {
+public class WebViewActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private ProgressBar progress;
     String cookie;
 
@@ -27,17 +25,17 @@ public class WebViewActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-
+/*
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // toolbar.setNavigationIcon(R.drawable.ic_chevron_left_white_36dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+       /*// getSupportActionBar().setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        });*/
 
 
         setTitle("CoCubes Login");
@@ -75,12 +73,7 @@ public class WebViewActivity extends ActionBarActivity {
     private class DisPlayWebPageActivityClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return false;
-        }
 
-
-        @Override
-        public void onPageFinished(WebView view, String url){
             if(url.contains("cocubes.com/student/home.aspx")) {
                 SharedPreferences pref3 = getSharedPreferences(Constants.PREFERENCE_NAME, 0); // 0 - for private mode
                 SharedPreferences.Editor editor = pref3.edit();
@@ -90,7 +83,14 @@ public class WebViewActivity extends ActionBarActivity {
                 setResult(Activity.RESULT_OK);
                 finish();
             }
+
+            return false;
         }
+
+
+       /* @Override
+        public void onPageFinished(WebView view, String url){
+        }*/
     }
 
     private class MyWebViewClient extends WebChromeClient {
@@ -103,7 +103,7 @@ public class WebViewActivity extends ActionBarActivity {
     }
 
     public void setValue(int progress) {
-        this.progress.setProgress(progress);
+      //  this.progress.setProgress(progress);
         if(progress > 70)
             this.progress.setVisibility(View.GONE);
     }
