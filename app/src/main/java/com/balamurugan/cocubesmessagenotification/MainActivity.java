@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (requestCode == Constants.REQUEST_CODE && resultCode == RESULT_OK) {
 
-                Toast.makeText(MainActivity.this, "Logged in. Now enable the ng service.",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Logged in. Now enable the bg service.",Toast.LENGTH_LONG).show();
                 toggleSwitch.setEnabled(true);
 
             }
