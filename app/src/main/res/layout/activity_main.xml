@@ -8,15 +8,17 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
 
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Login / Logout"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"/>
 
@@ -28,6 +30,7 @@
         android:text="Use another account?"
         android:layout_below="@id/button"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         android:layout_centerHorizontal="true"/>
 
     <Switch
@@ -38,6 +41,38 @@
         android:layout_below="@id/newuser"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sit back, relax. You'll get notified. :) \n Safe to close this app."
+        android:layout_below="@id/switch1"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:id="@+id/github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="https://git.io/vQKA3"
+        android:layout_alignParentBottom="true"
+        android:autoLink="web"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="© GPL v3 \n\n balamurugan15"
+        android:layout_above="@id/github"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
 
     </RelativeLayout>
 

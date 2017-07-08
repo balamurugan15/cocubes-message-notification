@@ -1,8 +1,13 @@
 package com.balamurugan.cocubesmessagenotification;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 
 import com.balamurugan.cocubesmessagenotification.network.Response;
@@ -22,10 +27,13 @@ public class JobSchedulerService extends JobService {
 
     String cookie;
 
+    JobParameters mParams;
+
 
     @Override
     public boolean onStartJob(JobParameters params) {
 
+        mParams = params;
         SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_NAME, 0);
         cookie = pref.getString(Constants.PREFERENCE_TAG, null);
         if(cookie != null){
@@ -45,12 +53,6 @@ public class JobSchedulerService extends JobService {
     private class CheckUpdate extends AsyncTask<Void, Void,Void> {
 
 
-
-        String dlink;
-       /* @Override
-        protected void onPreExecute(){
-
-        }*/
 
        Response response;
         Gson gson = new Gson();
@@ -102,15 +104,43 @@ public class JobSchedulerService extends JobService {
             if(response != null) {
                 SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_NAME, 0);
                 long nid = pref.getLong(Constants.PREFERENCE_NID, 0);
-                if (nid < response.getItems().get(0).getNID()) {
+                if(nid == 0){
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putLong(Constants.PREFERENCE_NID, response.getItems().get(0).getNID());
+                    editor.apply();
+                    jobFinished(mParams, true);
+                    return;
+                }
+                else if (nid < response.getItems().get(0).getNID()) {
 
-                    //show notification
+                    showNotification("CoCubes message",response.getItems().get(0).getS());
 
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putLong(Constants.PREFERENCE_NID, response.getItems().get(0).getNID());
                     editor.apply();
                 }
+                jobFinished(mParams, false);
             }
+            jobFinished(mParams, true);
+        }
+
+        void showNotification(String title, String content){
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAIN_URL));
+            PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent, 0);
+
+            Notification n  = new Notification.Builder(getApplicationContext())
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentIntent(pIntent)
+                    .setAutoCancel(true).build();
+
+
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            notificationManager.notify(0, n);
 
         }
 

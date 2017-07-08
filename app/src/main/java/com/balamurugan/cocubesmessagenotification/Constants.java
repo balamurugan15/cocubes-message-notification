@@ -9,7 +9,9 @@ public final class Constants {
     public static final String PREFERENCE_NAME = "cookies";
     public static final String PREFERENCE_TAG = "cookie";
     public static final String PREFERENCE_NID = "nid";
+    public static final String PREFERENCE_TOGGLE = "toggle";
     public static final String CONTENT_URL = "https://www.cocubes.com/webservices/educationservice.asmx/GetNotifyItems?s=-1&c=50&id=-1&ib=true&u=false";
+    public static final String MAIN_URL = "https://www.cocubes.com/student/messages.aspx";
 
     public static final int REQUEST_CODE = 1234;
 
