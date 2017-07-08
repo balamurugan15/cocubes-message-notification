@@ -2,6 +2,8 @@
 
  Get a notification for every new message in your CoCubes account.
 
+ Supports Android 5.0 (Lollipop) and above.
+ 
  Download the apk : [Cocubes-message-notification-v1.0.apk](https://github.com/balamurugan15/cocubes-message-notification/raw/master/app/Cocubes-message-notification-v1.0.apk)
 
 ### How to use
