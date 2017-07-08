@@ -8,10 +8,8 @@
  * Open the app, login to your account once.
  * Enable the background service. Done.
 
- ![alt text](http://imgur.com/a/8UrWg)
+ ![Screenshot](https://image.ibb.co/c1h9Pa/Screenshot_20170708_041602.jpg)
  
- <blockquote class="imgur-embed-pub" lang="en" data-id="a/8UrWg"><a href="//imgur.com/8UrWg"></a></blockquote>
-
 
 ### License
 
